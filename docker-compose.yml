@@ -1,0 +1,62 @@
+version: "3.5"
+services:
+  hack_nginx:
+    image: nginx:1.11
+    ports:
+      - 88:80
+      - 443:443
+    depends_on:
+      - hack_gatekeeper
+      - hack_ui
+    networks:
+      - hack_network
+  hack_ui:
+    build: ./hackio-ui/
+    image: hackio-ui
+    container_name: hack_ui
+    environment:
+      - NODE_ENV=local
+    depends_on:
+      - hack_gatekeeper
+    ports:
+      - 5000:3000
+    networks:
+      - hack_network
+  hack_mysql:
+    container_name: mysql
+    image: mysql:5.6
+    restart: always
+    environment:
+      MYSQL_DATABASE: admin
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: admin
+      MYSQL_ROOT_PASSWORD: admin
+    networks:
+      - hack_network
+  hack_gatekeeper:
+    container_name: hack_gatekeeper
+    build: ./gatekeeper-ms/
+    image: hack-gatekeeper
+    ports:
+      - 4001:3000
+    depends_on:
+      - hack_mysql
+    networks:
+      - hack_network
+  hack_hackio:
+    build: ./hackio-ms/
+    image: hackio-ms
+    container_name: hackio_ms
+    environment:
+      - NODE_ENV=local
+    ports:
+      - 4007:3000
+      - 8209:8202
+    depends_on:
+      - hack_mysql
+    networks:
+      - hack_network
+networks:
+  hack_network:
+    driver: bridge
+    name: hack_network
