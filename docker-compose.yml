@@ -1,30 +1,33 @@
 version: "3.5"
 services:
-  hack_nginx:
+  nginx:
     image: nginx:1.11
     ports:
       - 88:80
       - 443:443
     depends_on:
-      - hack_gatekeeper
-      - hack_ui
+      - gatekeeper-ms
+      - hackio-ui-ms
     networks:
-      - hack_network
-  hack_ui:
-    build: ./hackio-ui/
-    image: hackio-ui
-    container_name: hack_ui
+      - hackio-network
+  hackio-ui-ms:
+    build: ./hackio-ui-ms/
+    image: hackio-ui-ms
+    container_name: hackio-ui-ms
     environment:
       - NODE_ENV=local
     depends_on:
-      - hack_gatekeeper
+      - gatekeeper-ms
     ports:
       - 5000:3000
     networks:
-      - hack_network
-  hack_mysql:
-    container_name: mysql
-    image: mysql:5.6
+      - hackio-network
+  postgres:
+    image: postgres
+    ports:
+      - 5432:5432
+    volumes:
+      - postgres_api_data:/data/postgres
     restart: always
     environment:
       MYSQL_DATABASE: admin
@@ -32,18 +35,18 @@ services:
       MYSQL_PASSWORD: admin
       MYSQL_ROOT_PASSWORD: admin
     networks:
-      - hack_network
-  hack_gatekeeper:
-    container_name: hack_gatekeeper
+      - hackio-network
+  gatekeeper-ms:
+    container_name: gatekeeper-ms
     build: ./gatekeeper-ms/
-    image: hack-gatekeeper
+    image: gatekeeper-ms
     ports:
       - 4001:3000
     depends_on:
-      - hack_mysql
+      - postgres
     networks:
-      - hack_network
-  hack_hackio:
+      - hackio-network
+  hackio-ms:
     build: ./hackio-ms/
     image: hackio-ms
     container_name: hackio_ms
@@ -53,10 +56,23 @@ services:
       - 4007:3000
       - 8209:8202
     depends_on:
-      - hack_mysql
+      - postgres
     networks:
-      - hack_network
+      - hackio-network
+  gateway-ms:
+    build: ./gateway-ms/
+    image: gateway-ms
+    container_name: gateway-ms
+    environment:
+      - NODE_ENV=local
+    ports:
+      - 4007:3000
+      - 8209:8202
+    depends_on:
+      - postgres
+    networks:
+      - hackio-network      
 networks:
-  hack_network:
+  hackio-network:
     driver: bridge
-    name: hack_network
+    name: hackio-network
