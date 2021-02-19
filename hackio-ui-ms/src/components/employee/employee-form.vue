@@ -71,6 +71,6 @@ export default {
 </script>
 <style scoped>
 .sucess-message {
-  color: #32a95d;
+  color: #16e261;
 }
 </style>
