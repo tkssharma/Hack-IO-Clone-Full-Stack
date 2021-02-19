@@ -23,7 +23,6 @@
     </form>
   </div>
 </template>
-
 <script>
 export default {
   name: "employee-form",
@@ -70,7 +69,6 @@ export default {
   }
 };
 </script>
-
 <style scoped>
 .sucess-message {
   color: #32a95d;
