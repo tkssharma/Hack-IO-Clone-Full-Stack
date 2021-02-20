@@ -1,0 +1,129 @@
+$font-helvetica-regular: 'HelveticaNeuenm',
+Arial,
+'Lucida Grande',
+sans-serif;
+$font-roboto-bold: 'HelveticaNeuebd',
+Arial,
+'Lucida Grande',
+sans-serif;
+$error-message:rgb(225, 46, 46);
+$font-roboto: 'HelveticaNeuebd',
+Arial,
+'Lucida Grande',
+sans-serif;
+$global-font-family: 'Roboto',
+sans-serif;
+
+
+// Breakpoints
+$bp-small: 480px;
+$bp-xsmall: 566px;
+$bp-smedium: 736px;
+$bp-medium: 767px;
+$bp-xmedium: 990px;
+$bp-large: 1024px;
+$bp-xxlarge: 1139px;
+$bp-xlarge: 1440px;
+$bp-maxwidth: 1440px;
+$base-size: 16;
+$base-font-size: 16;
+$line-height: 1.3;
+
+$white-color: #fff;
+$black-color: rgb(0, 0, 0);
+$light-gray-color: #ccc;
+$red-border-color: #c00;
+$light-red-color: #fff0f0;
+$success-color: #0a9e02;
+$point-color: #a6bdc4;
+$fav-color: #f05c72;
+$light-gray-color: #ececec;
+
+
+//Padding margin
+$gutter-1: 1px;
+$gutter-2: 2px;
+$gutter-5: 5px;
+$gutter-6: 6px;
+$gutter-7: 7px;
+$gutter-8: 8px;
+$gutter-10: 10px;
+$gutter-12: 12px;
+$gutter-15: 15px;
+$gutter-16: 16px;
+$gutter-17: 17px;
+$gutter-20: 20px;
+$gutter-22: 22px;
+$gutter-24: 24px;
+$gutter-25: 25px;
+$gutter-30: 30px;
+$gutter-32: 32px;
+$gutter-35: 35px;
+$gutter-40: 40px;
+$gutter-44: 44px;
+$gutter-50: 50px;
+$gutter-60: 60px;
+$gutter-100: 100px;
+
+//radius
+$radius-5: 5px;
+
+
+//Colors
+// $black-color: #000;
+$white-color: #fff;
+$light-blue: #03bbd2;
+// $red-color: #f00;
+$light-gray-color: #ccc;
+$red-border-color: #c00;
+$light-red-color: #fff0f0;
+$success-color: #0a9e02;
+$point-color: #a6bdc4;
+$fav-color: #f05c72;
+$border-color: #c2c2c2;
+$feature-point-color: #a48a58;
+$arrow-color: #7c7e7d;
+$arrow-hover-color: #9cacfd;
+$gray-color: #9e9e9e;
+$solitude-color: #e6e9ee;
+$pager-border-color: #c7c7c7;
+$pager-arrow-color: #dcdcdc;
+$pager-disable-color: #484848;
+$pager-anchor-color: #666;
+$pager-current-color: #6f6f6f;
+$notify-bg-color: #f6fcff;
+$notify-color: #0072b9;
+
+// re-design color theme
+$black-color: #1c1c1c;
+$cream-color: #fcf9ee;
+$stroke-color: #e2e1d7;
+$dark-gray-color: #707070;
+$red-color: #c00;
+$green-color: #0cc241;
+// color: #171010;
+
+//Colors RGBA
+$white-rgba: rgba($white-color, .25);
+$white-rgba-60: rgba($white-color, .6);
+$white-rgba-90: rgba($white-color, .9);
+$black-rgba-30: rgba($black-color, .3);
+$black-rgba-80: rgba($black-color, .8);
+$black-rgba-50: rgba($black-color, .1);
+$black-rgba-15: rgba($black-color, .15);
+$gray-rgba-60: rgba(204, 204, 204, .6);
+$green-rgba-80: rgba(10, 158, 2, .08);
+
+
+$font-serif-light: 'MaloneSerif-Book',
+Helvetica,
+Arial,
+sans-serif;
+$font-serif: 'MaloneSerif',
+Helvetica,
+Arial,
+sans-serif;
+$font-serif-medium: 'MaloneSerif-MediumWeb',
+Helvetica,
+Arial,
+sans-serif;

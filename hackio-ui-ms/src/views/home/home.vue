@@ -1,15 +1,26 @@
 <template>
-  <div id="app" class="container">
-         <label for="number">just a random number</label> <br/>
-         <input @input="changed" name="number" type="text" />
-         <p>{{number}}</p>
-  </div>
+<div>
+  <SearchBar @search="handleSearch"/>
+  <Technologies :technologyData="technologyData"/>
+</div>
 </template>
 
 <script>
 import { mapGetters, mapActions } from "vuex";
+import SearchBar from '../../components/home/search-bar';
+import Technologies from '../../components/home/technology-list';
+import technology from '../../components/home/mock';
 
 export default {
+  components : {
+    SearchBar,
+    Technologies
+  },
+  data(){
+     return {
+       technologyData: technology.data
+     }
+  },
   computed: {
      ...mapGetters['number', 'email']
   },
@@ -18,6 +29,9 @@ export default {
     changed: function(e){
      // alert(e.target.value)
     this.CHANGE_NUMBER(e.target.value);
+    },
+    handleSearch(value){
+        console.log(value);
     }
   }
 }

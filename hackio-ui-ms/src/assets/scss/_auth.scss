@@ -1,0 +1,82 @@
+.page__container {
+  margin: 0 auto;
+  max-width: 1212px;
+  padding: 0 10px;
+
+  .wrapper {
+    margin: 0 auto;
+    max-width: 380px;
+    padding: 40px 0 30px;
+
+    .tut-info-title {
+      margin-bottom: 0px;
+    }
+
+    .message-error {
+      margin-bottom: 10px;
+      padding: 10px;
+      @include font(12, 600);
+      font-family: $global-font-family;
+      background-color: #ed6006;
+    }
+
+    .message-success {
+      margin-bottom: 10px;
+      padding: 10px;
+      font-family: $global-font-family;
+      @include font(12, 600);
+      background-color: #01bbd2;
+    }
+
+    .errorMsg {
+      @include font(12, 600);
+      font-family: $global-font-family;
+      color: #ed6006;
+    }
+
+    .form-label {
+      font-family: $global-font-family;
+      margin-bottom: 20px;
+      display: block;
+    }
+  }
+}
+
+
+.auth-options {
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  margin: 0;
+  padding: 0px;
+  margin-top: 10px;
+
+  &__item {
+    text-align: center;
+    display: block;
+    font-family: $font-roboto;
+    font-weight: 600;
+    padding-bottom: 10px;
+
+    &-forgetPass {
+      color: black;
+      font-family: $font-roboto-bold;
+      font-size: 0.8rem;
+      text-decoration: none;
+    }
+
+    &-login {
+      color: black;
+      font-family: $font-roboto-bold;
+      font-size: 0.8rem;
+      text-decoration: none;
+    }
+
+    &-register {
+      color: black;
+      font-family: $font-roboto-bold;
+      font-size: 0.8rem;
+      text-decoration: none;
+    }
+  }
+}

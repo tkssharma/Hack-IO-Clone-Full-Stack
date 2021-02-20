@@ -1,0 +1,60 @@
+@import './base';
+@import './global';
+@import './mixins';
+@import './variable';
+@import './loader';
+@import './display';
+@import './modal';
+@import './auth';
+@import './messages';
+@import './button';
+@import './sidemenu';
+@import './placeholder';
+
+* {
+  box-sizing: border-box;
+}
+
+html body {
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+  top: 0px;
+  left: 0px;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  font-weight: 400;
+  color: #383838;
+  background-color: #fafafa;
+  opacity: 1;
+}
+
+.footer-links {
+  list-style: none;
+  margin: 0px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  padding: 15px;
+
+  .footer-link {
+    a {
+      text-decoration: none;
+      margin: 15px;
+      color: #ffffff;
+      padding: 10px;
+      text-decoration: none;
+      font-weight: bold;
+
+      &:hover,
+      &:visited,
+      &:focus {
+        color: #ffffff;
+        border-bottom: 5px solid white;
+      }
+    }
+  }
+}

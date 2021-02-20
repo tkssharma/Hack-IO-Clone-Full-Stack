@@ -1,0 +1,28 @@
+@import './mixins';
+@import './variable';
+
+button,
+.button {
+  @include font(12, 400);
+  background: transparent;
+  border: 1px solid transparent;
+  cursor: pointer;
+  display: inline-block;
+  font-family: $global-font-family;
+  line-height: 20px;
+  min-height: 40px;
+  padding: 0 16px;
+
+
+  &.add-tutoial {
+    @include font(18, 200);
+    background: $light-blue;
+    color: white;
+    @include media($bp-xmedium, $bp-large) {
+        padding: 0px 8px;
+    }
+    @include media(null, $bp-xmedium) {
+        padding: 0px 16px;
+    }
+  }
+}

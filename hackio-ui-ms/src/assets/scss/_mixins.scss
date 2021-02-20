@@ -1,0 +1,155 @@
+@mixin media($min: null, $max: null) {
+  @if ($min) {
+    @if ($max) {
+      @media only screen and (min-width: #{$min}) and (max-width: #{$max}) {
+        @content;
+      }
+    } @else {
+      @media only screen and (min-width: #{$min}) {
+        @content;
+      }
+    }
+  } @else {
+    @if ($max) {
+      @media only screen and (max-width: #{$max}) {
+        @content;
+      }
+    }
+  }
+}
+
+
+@mixin font($pixels, $weight: normal) {
+  // font-size: $pixels + px;
+  font-size: ($pixels / $base-font-size) + rem;
+  font-weight: $weight;
+}
+
+@mixin box-sizing($sizing) {
+  -webkit-box-sizing: $sizing;
+  -moz-box-sizing: $sizing;
+  box-sizing: $sizing;
+}
+// Apply to UL
+@mixin padding-margin {
+  margin: 0;
+  padding: 0;
+}
+
+// Apply to UL
+@mixin clear-list {
+  list-style: none;
+}
+
+
+@mixin ul-li-clear-list {
+  ul {
+    @include padding-margin;
+
+    li {
+      @include clear-list;
+    }
+  }
+}
+
+// clearfix
+@mixin clear-box {
+  &::after {
+    clear: both;
+    content: '';
+    display: table;
+    overflow: hidden;
+  }
+}
+
+
+@mixin input {
+  font-size: 0.9rem;
+  border: 1px solid #ccc;
+  color: #000;
+  display: block;
+  outline: none;
+  padding: 10px 15px;
+  width: 100%;
+}
+@mixin bg-banner($image) {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  top: 0px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+
+  @media (min-width: 360px) {
+    background: url($image) no-repeat border-box, #FFFFFF;
+    background-size: cover;
+    background-position: 70% 10%;
+  }
+
+  @media (min-width: 400px) {
+    background: url($image) no-repeat border-box, #FFFFFF;
+    background-size: cover;
+    background-position: 70% 10%;
+  }
+
+  @media (min-width: 567px) {
+    background: url($image) no-repeat border-box, #FFFFFF;
+    background-size: cover;
+    background-position: 70% 10%;
+  }
+
+  @media (min-width: 768px) {
+    background: url($image) no-repeat border-box, #FFFFFF;
+    background-size: cover;
+    background-position: 70% 10%;
+  }
+
+  @media (min-width: 1200px) {
+    background: url($image) center/cover no-repeat border-box, #FFFFFF;
+  }
+
+  @media (min-width: 1366px) {
+    background: url($image) center/cover no-repeat border-box, #FFFFFF;
+  }
+}
+
+@mixin authContainer($image) {
+  @include bg-banner($image);
+  left: 0;
+  top: 0;
+  .logo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    .img-logo {
+      height: 100px;
+      display: block;
+      width: 110px;
+      margin: 0 auto;
+    }
+    span {
+      font-size: 1.3rem;
+      padding: 10px;
+      color: #e2884a;
+    }
+  }
+  @media (min-width: 360px) {
+    background-position: 70% 10%;
+  }
+
+  @media (min-width: 400px) {
+    background-position: 70% 10%;
+  }
+
+  @media (min-width: 567px) {
+    background-position: 70% 10%;
+  }
+
+  @media (min-width: 768px) {
+    background-position: 70% 10%;
+  }
+  
+}

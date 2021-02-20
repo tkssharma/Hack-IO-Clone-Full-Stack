@@ -1,29 +1,26 @@
 <template>
-<div>
-  <HeaderComp></HeaderComp>
-  <main>
-   <router-view></router-view>
-  </main>
-  <FooterComp></FooterComp>
-
-</div>
+  <div class="page">
+    <HeaderComp></HeaderComp>
+    <div class="body-container">
+        <router-view></router-view>
+    </div>
+    <FooterComp></FooterComp>
+  </div>
 </template>
 
 <script>
-import HeaderComp from './components/shared/header/header.vue';
-import FooterComp from './components/shared/footer/footer.vue';
+import HeaderComp from "./components/shared/header/header.vue";
+import FooterComp from "./components/shared/footer/footer.vue";
 
 export default {
-  components:{
+  components: {
     HeaderComp,
-    FooterComp
-  }
-}
+    FooterComp,
+  },
+};
 </script>
 
 
-<style>
-.main-content {
-  margin-top: 80px;
-}
+<style lang="scss">
+@import "../src/assets/scss/index.scss";
 </style>
