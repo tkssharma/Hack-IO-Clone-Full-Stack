@@ -1,12 +1,13 @@
 <template>
   <v-container>
     <v-layout row v-if="error">
-      <v-flex xs12 sm6 offset-sm3>
+      <v-col offset-sm="4" offset-md="4">
         <app-alert @dismissed="onDismissed" :text="error.message"></app-alert>
-      </v-flex>
+      </v-col>
     </v-layout>
     <v-layout row>
-      <v-flex xs12 sm6 offset-sm3>
+      <v-row>
+      <v-col md="8" offset-sm="8" offset-lg="8" offset-md="8">
         <v-card class="mx-auto auth-card" max-width="350">
           <v-card-text>
             <v-container>
@@ -55,7 +56,8 @@
             </v-container>
           </v-card-text>
         </v-card>
-      </v-flex>
+      </v-col>
+      </v-row>
     </v-layout>
   </v-container>
 </template>
@@ -64,7 +66,7 @@
 import { mapGetters, mapActions } from "vuex";
 import { validationMixin } from "vuelidate";
 import { required, email, minLength } from "vuelidate/lib/validators";
-import * as firebase from 'firebase'
+import * as firebase from "firebase";
 
 export default {
   mixins: [validationMixin],
@@ -81,16 +83,18 @@ export default {
   },
   created() {
     this.CLEAR_ERROR();
-    this.subscription = firebase.default.auth().onAuthStateChanged(async (user) => {
-      if (user && user.email) {
-        const token = await user.getIdToken(true);
-        localStorage.setItem("token", token);
-        await this.USER_INITLIZE_SESSION(user);
-      }
-    });
+    this.subscription = firebase.default
+      .auth()
+      .onAuthStateChanged(async (user) => {
+        if (user && user.email) {
+          const token = await user.getIdToken(true);
+          localStorage.setItem("token", token);
+          await this.USER_INITLIZE_SESSION(user);
+        }
+      });
   },
   beforeDestroy() {
-    console.log('destroyed');
+    console.log("destroyed");
     this.subscription && this.subscription();
   },
   computed: {
@@ -117,7 +121,7 @@ export default {
       "USER_INITLIZE_SESSION",
       "USER_SIGNIN",
       "SET_ERROR",
-      "CLEAR_ERROR"
+      "CLEAR_ERROR",
     ]),
     async onSignin() {
       if (

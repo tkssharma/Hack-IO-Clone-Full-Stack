@@ -6,7 +6,8 @@
       </v-flex>
     </v-layout>
     <v-layout row>
-      <v-flex xs12 sm6 offset-sm3>
+      <v-row>
+      <v-col md="8" offset-sm="8" offset-lg="8" offset-md="8">
         <v-card class="mx-auto auth-card" max-width="350">
           <v-card-text>
             <v-container>
@@ -68,7 +69,8 @@
             </v-container>
           </v-card-text>
         </v-card>
-      </v-flex>
+      </v-col>
+      </v-row>
     </v-layout>
   </v-container>
 </template>

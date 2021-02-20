@@ -1,7 +1,7 @@
 <template>
 <div>
   <SearchBar @search="handleSearch"/>
-  <Technologies :technologyData="technologyData"/>
+  <Technologies :technologyData="filteredData"/>
 </div>
 </template>
 
@@ -18,7 +18,8 @@ export default {
   },
   data(){
      return {
-       technologyData: technology.data
+       technologyData: technology.data,
+        filteredData: technology.data
      }
   },
   computed: {
@@ -31,7 +32,18 @@ export default {
     this.CHANGE_NUMBER(e.target.value);
     },
     handleSearch(value){
-        console.log(value);
+      if(value && value.length > 0) {
+        this.filteredData = this.technologyData.filter(i => {
+          const val = value.toLowerCase();
+          const title = i.title && i.title.toLowerCase();
+          if(val && title.indexOf(val) !== -1) {
+            return true
+          } 
+          return false
+        })
+      } else {
+        this.filteredData = this.technologyData;
+      }
     }
   }
 }

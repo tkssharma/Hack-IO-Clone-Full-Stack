@@ -9,6 +9,8 @@
           <div class="form-holder">
             <div class="navbarSearch">
               <input
+                @change="onChange"
+                @keyup="onChange"
                 v-model="searchText"
                 class="form-control navbar-search-input js-navbar-search-input nav-input js-filter-topics"
                 type="text"
@@ -36,7 +38,7 @@ export default {
     };
   },
   methods: {
-    handleChange() {
+    onChange() {
       this.$emit("search", this.searchText);
     },
   },
