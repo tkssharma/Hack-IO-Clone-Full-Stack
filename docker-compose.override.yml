@@ -1,31 +1,13 @@
 version: "3.5"
 services:
-  nginx:
-    volumes:
-      - ./proxy/default.conf:/etc/nginx/conf.d/default.conf:ro
-      - ./proxy/ssl:/etc/nginx/ssl:ro
-  hackio-ui-ms:
-    volumes: 
-      - ./hackio-ui-ms/:/usr/src/app
-      - hackio_ui_modules:/usr/src/app/node_modules
-  gatekeeper-ms:
-    volumes: 
-      - ./gatekeeper-ms/:/usr/src/app
-      - gatekeeper_modules:/usr/src/app/node_modules
   postgres:
    volumes: 
       - postgres_api_data:/data/postgres
   hackio-ms:
+    command: npm run start:debug
     volumes: 
       - ./hackio-ms/:/usr/src/app
-      - hackio_modules:/usr/src/app/node_modules   
-  gateway-ms:
-    volumes: 
-      - ./gateway-ms/:/usr/src/app
-      - gateway_modules:/usr/src/app/node_modules          
+      - hackio_modules:/usr/src/app/node_modules            
 volumes:
   postgres_api_data: {}
   hackio_modules: {}
-  gateway_modules: {}
-  hackio_ui_modules: {}
-  gatekeeper_modules: {}

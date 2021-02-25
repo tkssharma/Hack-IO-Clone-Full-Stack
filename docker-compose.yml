@@ -1,49 +1,17 @@
 version: "3.5"
 services:
-  nginx:
-    image: nginx:1.11
-    ports:
-      - 88:80
-      - 443:443
-    depends_on:
-      - gatekeeper-ms
-      - hackio-ui-ms
-    networks:
-      - hackio-network
-  hackio-ui-ms:
-    build: ./hackio-ui-ms/
-    image: hackio-ui-ms
-    container_name: hackio-ui-ms
-    environment:
-      - NODE_ENV=local
-    depends_on:
-      - gatekeeper-ms
-    ports:
-      - 5000:3000
-    networks:
-      - hackio-network
   postgres:
     image: postgres
     ports:
-      - 5432:5432
+      - 5436:5432
     volumes:
       - postgres_api_data:/data/postgres
     restart: always
     environment:
-      MYSQL_DATABASE: admin
-      MYSQL_USER: admin
-      MYSQL_PASSWORD: admin
-      MYSQL_ROOT_PASSWORD: admin
-    networks:
-      - hackio-network
-  gatekeeper-ms:
-    container_name: gatekeeper-ms
-    build: ./gatekeeper-ms/
-    image: gatekeeper-ms
-    ports:
-      - 4001:3000
-    depends_on:
-      - postgres
+      POSTGRES_DB: admin
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      PGDATA: /data/postgres
     networks:
       - hackio-network
   hackio-ms:
@@ -53,25 +21,12 @@ services:
     environment:
       - NODE_ENV=local
     ports:
-      - 4007:3000
-      - 8209:8202
+      - 4000:3000
+      - 5858:5858
     depends_on:
       - postgres
     networks:
-      - hackio-network
-  gateway-ms:
-    build: ./gateway-ms/
-    image: gateway-ms
-    container_name: gateway-ms
-    environment:
-      - NODE_ENV=local
-    ports:
-      - 4007:3000
-      - 8209:8202
-    depends_on:
-      - postgres
-    networks:
-      - hackio-network      
+      - hackio-network     
 networks:
   hackio-network:
     driver: bridge
