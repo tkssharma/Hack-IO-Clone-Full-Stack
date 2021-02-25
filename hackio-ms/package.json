@@ -25,7 +25,8 @@
     "db:drop": "npm run typeorm:cli schema:drop",
     "migration:generate": "typeorm migration:create -n",
     "typeorm:migrate": "typeorm migration:run",
-    "db:sync": "npm run typeorm:cli schema:sync && npm run db:migrate"
+    "migration:run": "typeorm migration:run",
+    "db:sync": "npm run typeorm:cli schema:sync"
   },
   "keywords": [
     "typescript",

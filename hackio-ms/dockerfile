@@ -5,7 +5,9 @@ WORKDIR /app
 COPY package.json package-lock.json /app/
 
 RUN npm install && \
-  rm -rf /tmp/* /var/tmp/*
+    rm -rf /tmp/* /var/tmp/*
+
+COPY ./docker-utils/entrypoint/docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
 
 COPY . /app
 
@@ -15,5 +17,7 @@ EXPOSE 3000
 
 USER node
 
-CMD npm run migration:run
+ENV TYPEORM_MIGRATION=ENABLE
+ENV NPM_INSTALL=ENABLE
+
 CMD npm run start:prod

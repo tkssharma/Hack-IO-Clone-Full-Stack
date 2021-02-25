@@ -14,11 +14,7 @@ services:
       - gatekeeper_modules:/usr/src/app/node_modules
   postgres:
    volumes: 
-      - postgres_api_data:/data/postgres
-  hackio-ms:
-    volumes: 
-      - ./hackio-ms/:/usr/src/app
-      - hackio_modules:/usr/src/app/node_modules   
+      - postgres_api_data:/data/postgres  
   gateway-ms:
     volumes: 
       - ./gateway-ms/:/usr/src/app

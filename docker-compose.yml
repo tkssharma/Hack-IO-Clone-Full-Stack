@@ -20,9 +20,6 @@ services:
     container_name: hackio_ms
     environment:
       - NODE_ENV=local
-    ports:
-      - 4000:3000
-      - 5858:5858
     depends_on:
       - postgres
     networks:

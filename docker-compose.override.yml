@@ -4,10 +4,17 @@ services:
    volumes: 
       - postgres_api_data:/data/postgres
   hackio-ms:
-    command: npm run start:debug
-    volumes: 
-      - ./hackio-ms/:/usr/src/app
-      - hackio_modules:/usr/src/app/node_modules            
+   container_name: hackio_ms
+   command: npm run start:debug
+   environment:
+     NPM_INSTALL: ENABLE
+     TYPEORM_MIGRATION: ENABLE
+   ports:
+     - 4000:3000
+     - 5858:5858
+   volumes:
+     - ./hackio-ms:/app
+
 volumes:
   postgres_api_data: {}
   hackio_modules: {}
