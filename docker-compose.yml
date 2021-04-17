@@ -7,13 +7,13 @@ services:
       - 443:443
     depends_on:
       - gatekeeper-ms
-      - hackio-ui-ms
+      - hackio-ms
     networks:
       - hackio-network
   postgres:
     image: postgres
     ports:
-      - 5436:5432
+      - 5438:5432
     volumes:
       - postgres_api_data:/data/postgres
     restart: always
@@ -28,12 +28,16 @@ services:
     build: ./hackio-ms/
     image: hackio-ms
     container_name: hackio_ms
-    environment:
-      - NODE_ENV=local
     depends_on:
       - postgres
     networks:
-      - hackio-network     
+      - hackio-network   
+  gatekeeper-ms:
+    build: ./gatekeeper-ms/
+    image: gatekeeper-ms
+    container_name: gatekeeper_ms
+    networks:
+      - hackio-network      
 networks:
   hackio-network:
     driver: bridge
