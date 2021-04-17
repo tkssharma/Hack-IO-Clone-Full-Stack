@@ -5,11 +5,13 @@ const UserModule = {
     state : {
         user: null,
         error: null,
-        loading: false
+        loading: false,
+        isLoggedIn: false,
     },
     mutations: {
         SET_USER(state, payload) {
             state.user = payload
+            state.isLoggedIn = true
         },
         SET_ERROR(state, payload) {
             state.error = payload
@@ -42,7 +44,8 @@ const UserModule = {
     },
     getters: {
         user: state => state.user,
-        loading: state => state.loading
+        loading: state => state.loading,
+        isLoggedIn: state => state.isLoggedIn
     }
 }
 

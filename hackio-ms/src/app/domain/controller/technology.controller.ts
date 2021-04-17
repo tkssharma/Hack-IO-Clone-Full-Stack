@@ -1,21 +1,23 @@
 import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Post, Put, UsePipes, ValidationPipe } from '@nestjs/common';
 import TechnologyService from '../services/technology.service';
-import { ApiTags, ApiInternalServerErrorResponse, ApiOkResponse, ApiBadRequestResponse, ApiOperation, ApiBearerAuth } from '@nestjs/swagger';
-import { PARAMETERS_FAILED_VALIDATION, RESULTS_RETURNED } from 'src/app/constants.api';
+import {
+  ApiTags, ApiInternalServerErrorResponse,
+  ApiOkResponse, ApiBadRequestResponse, ApiOperation, ApiBearerAuth
+} from '@nestjs/swagger';
+import { PARAMETERS_FAILED_VALIDATION, RESULTS_RETURNED } from '../../constants.api';
 import { TechnologyParamById, CreateTechnologyParam, UpdateTechnologyParam } from '../dto/technology.dto';
-import { ENTITY_ACCEPTED } from '../../app.constants';
 
-@Controller('/api/v1/technologies')
+@Controller('technologies')
 @ApiBearerAuth('authorization')
 @UsePipes(new ValidationPipe({
   whitelist: true,
   transform: true,
 }))
-export class CategoryController {
+export class TechnologyController {
   constructor(private readonly techService: TechnologyService) { }
 
   @ApiTags('technology')
-  @ApiOperation({ description: '' })
+  @ApiOperation({ description: 'get all technology by uuid' })
   @UsePipes(ValidationPipe)
   @HttpCode(HttpStatus.OK)
   @ApiOkResponse({ description: RESULTS_RETURNED })
@@ -30,7 +32,7 @@ export class CategoryController {
     }
   }
   @ApiTags('technology')
-  @ApiOperation({ description: '' })
+  @ApiOperation({ description: 'get a technology by uuid' })
   @UsePipes(ValidationPipe)
   @HttpCode(HttpStatus.OK)
   @ApiOkResponse({ description: RESULTS_RETURNED })
@@ -46,7 +48,7 @@ export class CategoryController {
   }
 
   @ApiTags('technology')
-  @ApiOperation({ description: '' })
+  @ApiOperation({ description: 'create new technology' })
   @UsePipes(ValidationPipe)
   @HttpCode(HttpStatus.ACCEPTED)
   @ApiOkResponse({ description: RESULTS_RETURNED })
@@ -62,14 +64,14 @@ export class CategoryController {
   }
 
   @ApiTags('technology')
-  @ApiOperation({ description: '' })
+  @ApiOperation({ description: 'update technology' })
   @UsePipes(ValidationPipe)
   @HttpCode(HttpStatus.OK)
   @ApiOkResponse({ description: RESULTS_RETURNED })
   @ApiBadRequestResponse({ description: PARAMETERS_FAILED_VALIDATION })
-  @ApiInternalServerErrorResponse({ description: 'data has been fetched successfully' })
+  @ApiInternalServerErrorResponse({ description: 'data has been updated successfully' })
   @Put('/')
-  public async updateTechnologyById(@Body() data: UpdateTechnologyParam) {
+  public async updateTechnology(@Body() data: UpdateTechnologyParam) {
     try {
       return this.techService.update(data);
     } catch (err) {
@@ -78,19 +80,17 @@ export class CategoryController {
   }
 
   @ApiTags('technology')
-  @ApiOperation({ description: '' })
+  @ApiOperation({ description: 'delete technology' })
   @UsePipes(ValidationPipe)
   @HttpCode(HttpStatus.NO_CONTENT)
   @ApiOkResponse({ description: RESULTS_RETURNED })
   @ApiBadRequestResponse({ description: PARAMETERS_FAILED_VALIDATION })
-  @ApiInternalServerErrorResponse({ description: 'data has been fetched successfully' })
   @Delete('/:id')
-  public async deleteTechnologyById(@Param() params: TechnologyParamById) {
+  public async deleteTechnology(@Param() params: TechnologyParamById) {
     try {
       return this.techService.delete(params);
     } catch (err) {
       throw err;
     }
   }
-
 }

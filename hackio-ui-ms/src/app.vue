@@ -1,10 +1,10 @@
 <template>
   <div class="page">
-    <HeaderComp></HeaderComp>
+    <HeaderComp v-if="showHeaders"></HeaderComp>
     <div class="body-container">
         <router-view></router-view>
     </div>
-    <FooterComp></FooterComp>
+    <FooterComp  v-if="showHeaders"></FooterComp>
   </div>
 </template>
 
@@ -17,6 +17,15 @@ export default {
     HeaderComp,
     FooterComp,
   },
+  computed:{
+    showHeaders(){
+      //alert(this.$router.currentRoute.path);
+      if (this.$router.currentRoute.path === '/login' || this.$router.currentRoute.path === '/register' ){
+        return false;
+      }
+      return true;
+    }
+  }
 };
 </script>
 

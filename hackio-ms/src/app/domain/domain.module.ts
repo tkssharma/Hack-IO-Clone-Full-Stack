@@ -4,6 +4,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 
 import { DbModule } from '../../db/db.module';
+import { TechnologyController } from './controller/technology.controller';
 
 export const ALL_ENTITIES = fs.readdirSync(path.join(path.dirname(__filename), 'entities'))
   .filter((file) => (path.extname(file) === '.js' || path.extname(file) === '.ts') && !file.endsWith('.d.ts'))
@@ -19,7 +20,7 @@ export const ALL_SERVICES = fs.readdirSync(path.join(path.dirname(__filename), '
     DbModule.forRoot({entities: ALL_ENTITIES}),
     TypeOrmModule.forFeature(ALL_ENTITIES),
   ],
-  controllers: [],
+  controllers: [TechnologyController],
   providers: [...ALL_SERVICES],
   exports: [...ALL_SERVICES],
 })

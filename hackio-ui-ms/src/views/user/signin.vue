@@ -6,9 +6,9 @@
       </v-col>
     </v-layout>
     <v-layout row>
-      <v-row>
-      <v-col md="8" offset-sm="8" offset-lg="8" offset-md="8">
-        <v-card class="mx-auto auth-card" max-width="350">
+      <v-row class="container-auth">
+      <v-col md="12">
+        <v-card class="mx-auto auth-card">
           <v-card-text>
             <v-container>
               <form @submit.prevent="onSignin" novalidate>
@@ -141,3 +141,12 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.container-auth {
+  margin-top: 200px;
+}
+.row+.row {
+  margin-top:50px;
+}
+</style>

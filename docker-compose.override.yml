@@ -1,5 +1,9 @@
 version: "3.5"
 services:
+  nginx:
+    volumes:
+      - ./proxy/default.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./proxy/ssl:/etc/nginx/ssl:ro
   postgres:
    volumes: 
       - postgres_api_data:/data/postgres

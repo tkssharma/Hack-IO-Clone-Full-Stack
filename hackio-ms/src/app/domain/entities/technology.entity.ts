@@ -1,4 +1,5 @@
-import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import TechnologyPost from "./post.entity";
 
 
 @Entity({name: 'technology'})
@@ -21,6 +22,9 @@ export default class Technology {
 
     @ManyToOne(() => Technology, (event) => event.id)
     public parent!: Technology;
+
+    @OneToMany(()=> TechnologyPost, event => event.technology, { onDelete: 'SET NULL'})
+    public technology_posts!: TechnologyPost[]
 
     @CreateDateColumn({ type: 'timestamptz', default: () => 'CURRENT_TIMESTAMP', select: false  })
     public created_at!: Date;
