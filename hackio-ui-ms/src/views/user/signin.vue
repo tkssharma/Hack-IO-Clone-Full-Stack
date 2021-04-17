@@ -2,7 +2,6 @@
   <v-container>
     <v-layout row v-if="error">
       <v-col offset-sm="4" offset-md="4">
-        <app-alert @dismissed="onDismissed" :text="error.message"></app-alert>
       </v-col>
     </v-layout>
     <v-layout row>

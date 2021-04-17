@@ -2,7 +2,6 @@
   <v-container>
     <v-layout row v-if="error">
       <v-flex xs12 sm6 offset-sm3>
-        <app-alert @dismissed="onDismissed" :text="error.message"></app-alert>
       </v-flex>
     </v-layout>
     <v-layout row>
@@ -142,6 +141,7 @@ export default {
        "LOGOUT"
     ]),
     async onSignup() {
+      try {
       if (
         this.passwordErrors.length !== 0 ||
         this.confirmPasswordErrors.length !== 0 ||
@@ -153,6 +153,9 @@ export default {
         this.$v.$touch();
       } else {
        await this.USER_SIGNUP({ email: this.email, password: this.password });
+      }
+      }catch(err){
+        console.log(err);
       }
     },
     onSigninGoogle() {
